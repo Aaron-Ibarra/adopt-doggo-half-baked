@@ -8,4 +8,12 @@ const dogDetailContainer = document.getElementById('dog-detail-container');
 // use the id to fetch the dog
 // render and append this dog's details to the container
 
-getDog();
+window.addEventListener('load', async () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    const dog = await getDog(id);
+
+    const dogEl = renderDogDetail(dog);
+    dogDetailContainer.append(dogEl);
+});
